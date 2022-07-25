@@ -19,6 +19,8 @@ function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateV
     const theme = useTheme();
     const {data} = useSelector((store:any)=>store);
     const dispatch = useDispatch();
+    const parkedHours = (new Date).getHours()- (+data[slotIndex].bookedTiming.split(":")[0]);
+    const parkedMinutes = (new Date).getMinutes()- (+data[slotIndex].bookedTiming.split(":")[1]);
 
 
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -65,9 +67,9 @@ function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateV
         <DialogContent>
           <DialogContentText>
             
-           <Button variant='outlined'>Time : </Button>
+           <Button variant='outlined'>Time : {parkedHours}hrs:{parkedMinutes}min</Button>
           <Typography  variant="h5" component="div">
-      Charge : $10
+      Charge : ${(parkedHours+1)*10}
     </Typography>
     <Typography  variant="h5" component="div">
       Your Vehicle Number : {data[slotIndex].carCode}

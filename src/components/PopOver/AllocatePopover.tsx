@@ -40,7 +40,7 @@ function AllocatePopOver({
 }) {
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const [parkTime, setParkTime] = useState("");
+  const [parkTime, setParkTime] = useState(`${(new Date).getHours()}:${(new Date).getMinutes()}`);
   const [carCode, setCarCode] = useState("");
   const [toastMsg,setToastMsg] = useState("");
   const [toastDisplay,setToastDisplay]  = useState<string | boolean>("first");
@@ -120,6 +120,7 @@ function AllocatePopOver({
             <TextField
               id="demo-helper-text-misaligned"
               type={"time"}
+              value= {parkTime}
               autoComplete="off"
               helperText="Please Enter parking Time"
               size="small"
