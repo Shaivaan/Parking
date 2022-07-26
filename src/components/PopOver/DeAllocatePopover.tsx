@@ -13,7 +13,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { updateData,updateOccupied } from '../../Redux/Action';
 
 
-
 function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateVisible:any,slotIndex:number}){
     const [open, setOpen] = React.useState(false);
     const theme = useTheme();

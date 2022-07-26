@@ -11,17 +11,18 @@ import {createMemoryHistory} from 'history'
 
   const MockAllocate = ()=>{
     return (
-      <Provider store={store}><BrowserRouter><AllocatePopOver setisAllocateVisible={"asd"} slotIndex = {1}/></BrowserRouter></Provider>
+      <Provider store={store}><BrowserRouter><AllocatePopOver setisAllocateVisible={"sad"} slotIndex = {1}/></BrowserRouter></Provider>
     )
   }
 
 
 
-// test('should render allocatePopOver', () => {
-//   render(<MockAllocate/>);
-//   const cancelButton = screen.getByRole("button",{name:"Cancel"});
-//   fireEvent.click(cancelButton);  
-// });
+test('should render allocatePopOver', () => {
+  render(<MockAllocate/>);
+  const cancelButton = screen.getByRole("button",{name:"Cancel"});
+  fireEvent.click(cancelButton)
+  expect(cancelButton).not.toBeInTheDocument();
+});
 
 
 

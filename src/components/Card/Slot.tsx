@@ -28,7 +28,6 @@ type StoreType = {
 function Slot({slotData,slotIndex}:{slotData:any,slotIndex:number}) {
   const [isAllocateVisible,setisAllocateVisible] = useState(false);
   const [isDeAllocateVisible,setisDeAllocateVisible] = useState(false);
-
   
   return (
     <Box>
