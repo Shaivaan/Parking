@@ -33,7 +33,8 @@ export const Home = () => {
 
 
     
-    const handleSubmit = ()=>{
+    const handleSubmit = (e:any)=>{
+      e.preventDefault();
        if(+(inputValue) <= 0 || Math.floor(+(inputValue)) - Math.ceil(+(inputValue)) !== 0 ) {
         setToastDisplay(!toastDisplay);
        }else{ 
@@ -60,7 +61,7 @@ export const Home = () => {
         className="center"
       >
         <Typography variant="h4" align= "center">The Jurassic Parking</Typography>
-        <Box className="centu" marginTop={"6vh"} component="form" >
+        <Box className="centu" marginTop={"6vh"} component="form" onSubmit={(e:any)=>{handleSubmit(e)}}>
             
           <TextField
           type= "number"
@@ -71,7 +72,7 @@ export const Home = () => {
           autoComplete="off"
             onChange={(e)=>{setInputValue(e.target.value)}}
           />
-          <Button onClick={handleSubmit} disabled= {inputValue.trim().length === 0} variant="outlined">Get</Button>
+          <Button type="submit"  disabled= {inputValue.trim().length === 0} variant="outlined">Get</Button>
             
         </Box>
       </Box>

@@ -41,7 +41,8 @@ function Parking() {
       arr.push(i);
      }
     })
-    setSlotWillOpen(arr[0]);
+    
+    setSlotWillOpen(arr[Math.floor((Math.random()*arr.length))]);
     setisAllocateVisible(true);
   }
 
