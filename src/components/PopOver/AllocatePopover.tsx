@@ -65,7 +65,7 @@ function AllocatePopOver({
       setToastDisplay(!toastDisplay);
       return;
     }  
-    
+
     if (checkBookedSlots() == true){
       dispatch(updateToast("info"));
       setToastMsg("Vehicle Already Parked");
