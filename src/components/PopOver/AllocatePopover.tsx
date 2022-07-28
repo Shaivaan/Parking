@@ -38,9 +38,19 @@ function AllocatePopOver({
   setisAllocateVisible: any;
   slotIndex: number;
 }) {
+
+  const minuteHandler = ()=>{
+    let minutes:any = (new Date).getMinutes();
+    if(minutes < 10){
+      minutes = `0${minutes}`
+    }
+    return minutes;
+  }
+
   const [open, setOpen] = React.useState(false);
   const theme = useTheme();
-  const [parkTime, setParkTime] = useState(`${(new Date).getHours()}:${(new Date).getMinutes()}`);
+  // const [parkTime, setParkTime] = useState(`${(new Date).getHours()}:${(new Date).getMinutes()}`);
+  const [parkTime, setParkTime] = useState(`${(new Date).getHours()}:${minuteHandler()}`);
   const [carCode, setCarCode] = useState("");
   const [toastMsg,setToastMsg] = useState("");
   const [toastDisplay,setToastDisplay]  = useState<string | boolean>("first");
@@ -57,7 +67,7 @@ function AllocatePopOver({
 
  
   const handleBook = () => {
-    let currentDecimalTime:number = +(`${(new Date).getHours()}.${(new Date).getMinutes()}`);
+    let currentDecimalTime:number = +(`${(new Date).getHours()}.${minuteHandler()}`);
     let parkDecimalTime = +(parkTime.replace(":","."));
     if (parkTime.trim().length == 0 || carCode.trim().length == 0){
       dispatch(updateToast("warning"));
@@ -77,7 +87,7 @@ function AllocatePopOver({
       dispatch(updateToast("error"));
       setToastMsg("Invalid Parking Time");
       setToastDisplay(!toastDisplay);
-      setParkTime(`${(new Date).getHours()}:${(new Date).getMinutes()}`);
+      setParkTime(`${(new Date).getHours()}:${minuteHandler()}`);
       return;
     }
 

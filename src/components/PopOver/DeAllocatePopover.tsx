@@ -19,7 +19,7 @@ function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateV
     const {data} = useSelector((store:any)=>store);
     const dispatch = useDispatch();
     const parkedHours = (new Date).getHours()- (+data[slotIndex].bookedTiming.split(":")[0]);
-    const parkedMinutes = (new Date).getMinutes()- (+data[slotIndex].bookedTiming.split(":")[1]);
+    const parkedMinutes = Math.abs((new Date).getMinutes()- (+data[slotIndex].bookedTiming.split(":")[1]));
     const [isLoading,setIsLoading] = useState(false);
 
   const fullScreen = useMediaQuery(theme.breakpoints.down("md"));
@@ -33,16 +33,14 @@ function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateV
     data[slotIndex].carCode = "";
     data[slotIndex].isBooked = false;
     data[slotIndex].timing = "";
-    dispatch(updateData(data)); 
-    dispatch(updateOccupied(-1));
     setIsLoading(true);
     setTimeout(()=>{
+      dispatch(updateData(data)); 
+      dispatch(updateOccupied(-1));
       setIsLoading(false);
       setOpen(false);
     setisDeAllocateVisible(false);
     },1000)
-    // setOpen(false);
-    // setisDeAllocateVisible(false);
   }
 
 
@@ -95,7 +93,5 @@ function DeAllocatePopOver({setisDeAllocateVisible, slotIndex}:{setisDeAllocateV
       </Dialog>
     </div>
   )
-  
 }
-
 export default DeAllocatePopOver
