@@ -57,18 +57,30 @@ function AllocatePopOver({
 
  
   const handleBook = () => {
+    let currentDecimalTime:number = +(`${(new Date).getHours()}.${(new Date).getMinutes()}`);
+    let parkDecimalTime = +(parkTime.replace(":","."));
     if (parkTime.trim().length == 0 || carCode.trim().length == 0){
       dispatch(updateToast("warning"));
       setToastMsg("Oops!, Fill all Entries");
       setToastDisplay(!toastDisplay);
       return;
     }  
+    
     if (checkBookedSlots() == true){
       dispatch(updateToast("info"));
       setToastMsg("Vehicle Already Parked");
       setToastDisplay(!toastDisplay);
       return;
     } 
+
+    if(currentDecimalTime < parkDecimalTime){
+      dispatch(updateToast("error"));
+      setToastMsg("Invalid Parking Time");
+      setToastDisplay(!toastDisplay);
+      setParkTime(`${(new Date).getHours()}:${(new Date).getMinutes()}`);
+      return;
+    }
+
     updateSlot();
   }    
 
